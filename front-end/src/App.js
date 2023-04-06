@@ -53,7 +53,29 @@ const App = () => {
 
   return (
     <>
-  <NestedList/>
+  <div style={{ display: 'flex' }}>
+    <div style={{ flex: '1', marginRight: '10px' }}>
+      <div>
+        <input type="text" value={nomeTitulo} onChange={(e) => setNomeTitulo(e.target.value)} />
+        <button onClick={() => addTitulo()}>Adicionar Título</button>
+      </div>
+      <div>
+        <input type="text" value={nomeSubtitulo} onChange={(e) => setNomeSubtitulo(e.target.value)} />
+        <button onClick={() => addSubtitulo(titulos.length - 1)}>Adicionar Subtítulo</button>
+      </div>
+      <div>
+        <input type="text" value={nomeCampo} onChange={(e) => setNomeCampo(e.target.value)} />
+        <button onClick={() => addCampo(titulos.length - 1, Object.values(titulos[titulos.length - 1].properties).length - 1)}>Adicionar Campo</button>
+      </div>
+      <JsonPretty data={titulos} />
+    </div>
+    <div style={{ flex: '1', marginLeft: '10px' }}>
+      <Form
+        schema={{ title: 'Form', type: 'object', properties: titulos }}
+        validator={validator}
+      />
+    </div>
+  </div>
 </>
 
 
